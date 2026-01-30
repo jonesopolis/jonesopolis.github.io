@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "contentful": {
+      "command": "npx",
+      "args": ["-y", "@contentful/mcp-server"],
+      "env": {
+        "CONTENTFUL_MANAGEMENT_ACCESS_TOKEN": "CFPAT-Yjl7q_PDf7VlF4r6bSTBn_8E5UKYGAkxDFSwdby4WgE",
+        "SPACE_ID": "0p9g4pxrt6uv",
+        "ENVIRONMENT_ID": "master"
+      }
+    }
+  }
+}
