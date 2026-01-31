@@ -1,9 +1,16 @@
-import { createClient } from 'contentful';
+const shouldUseDemo = import.meta.env.MODE === 'development';
 
-const client = createClient({
-  space: import.meta.env.VITE_CONTENTFUL_SPACE_ID || 'demo',
-  accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || 'demo',
-});
+async function fetchContentful(type, params = {}) {
+  const searchParams = new URLSearchParams({ type, ...params });
+  const response = await fetch(`/api/contentful?${searchParams.toString()}`);
+
+  if (!response.ok) {
+    throw new Error(`Contentful request failed with status ${response.status}`);
+  }
+
+  const payload = await response.json();
+  return payload.data;
+}
 
 // Mock data for development without Contentful credentials
 const mockHero = {
@@ -91,132 +98,53 @@ const mockFooter = {
   tagline: 'exploring intelligence, one token at a time',
 };
 
-const isDemo = !import.meta.env.VITE_CONTENTFUL_SPACE_ID || import.meta.env.VITE_CONTENTFUL_SPACE_ID === 'demo';
-
-// Helper to extract image URL from Contentful asset
-function getImageUrl(asset) {
-  if (!asset?.fields?.file?.url) return null;
-  return `https:${asset.fields.file.url}`;
-}
-
-// Helper to extract tags from linked entries
-function extractTags(tags, includes) {
-  if (!tags || !Array.isArray(tags)) return [];
-
-  return tags.map((tag) => {
-    // If it's a linked entry, resolve it
-    if (tag.sys?.type === 'Link' && includes?.Entry) {
-      const resolved = includes.Entry.find((e) => e.sys.id === tag.sys.id);
-      if (resolved) {
-        return {
-          name: resolved.fields.name,
-          slug: resolved.fields.slug,
-        };
-      }
-    }
-    // If already resolved
-    if (tag.fields) {
-      return {
-        name: tag.fields.name,
-        slug: tag.fields.slug,
-      };
-    }
-    // Fallback for string tags (backwards compatibility)
-    if (typeof tag === 'string') {
-      return { name: tag, slug: tag.toLowerCase().replace(/\s+/g, '-') };
-    }
-    return null;
-  }).filter(Boolean);
-}
-
 export async function getHero() {
-  if (isDemo) return mockHero;
+  if (shouldUseDemo) return mockHero;
 
-  const entries = await client.getEntries({
-    content_type: 'heroSection',
-    limit: 1,
-    include: 1,
-  });
-
-  if (entries.items.length === 0) return mockHero;
-
-  const item = entries.items[0].fields;
-  return {
-    title: item.title,
-    subtitle: item.subtitle,
-    siteTitle: item.siteTitle,
-    siteDescription: item.siteDescription,
-    socialImage: getImageUrl(item.socialImage),
-  };
+  try {
+    const data = await fetchContentful('hero');
+    if (!data) return mockHero;
+    return data;
+  } catch (error) {
+    return mockHero;
+  }
 }
 
 export async function getPosts() {
-  if (isDemo) return mockPosts;
+  if (shouldUseDemo) return mockPosts;
 
-  const entries = await client.getEntries({
-    content_type: 'blogPost',
-    order: '-fields.publishDate',
-    include: 2,
-  });
-
-  return entries.items.map((item) => ({
-    slug: item.fields.slug,
-    title: item.fields.title,
-    excerpt: item.fields.excerpt,
-    content: item.fields.content,
-    publishDate: item.fields.publishDate,
-    tags: extractTags(item.fields.tags, entries.includes),
-    mainImage: getImageUrl(item.fields.mainImage),
-    thumbnailImage: getImageUrl(item.fields.thumbnailImage),
-    metaTitle: item.fields.metaTitle,
-    metaDescription: item.fields.metaDescription,
-  }));
+  try {
+    const data = await fetchContentful('posts');
+    return data || mockPosts;
+  } catch (error) {
+    return mockPosts;
+  }
 }
 
 export async function getPostBySlug(slug) {
-  if (isDemo) {
+  if (shouldUseDemo) {
     return mockPosts.find((p) => p.slug === slug) || null;
   }
 
-  const entries = await client.getEntries({
-    content_type: 'blogPost',
-    'fields.slug': slug,
-    limit: 1,
-    include: 2,
-  });
-
-  if (entries.items.length === 0) return null;
-
-  const item = entries.items[0].fields;
-  return {
-    slug: item.slug,
-    title: item.title,
-    excerpt: item.excerpt,
-    content: item.content,
-    publishDate: item.publishDate,
-    tags: extractTags(item.tags, entries.includes),
-    mainImage: getImageUrl(item.mainImage),
-    thumbnailImage: getImageUrl(item.thumbnailImage),
-    metaTitle: item.metaTitle,
-    metaDescription: item.metaDescription,
-  };
+  try {
+    const data = await fetchContentful('postBySlug', { slug });
+    if (!data) return null;
+    return data;
+  } catch (error) {
+    return mockPosts.find((p) => p.slug === slug) || null;
+  }
 }
 
 export async function getFooter() {
-  if (isDemo) return mockFooter;
+  if (shouldUseDemo) return mockFooter;
 
-  const entries = await client.getEntries({
-    content_type: 'footer',
-    limit: 1,
-  });
-
-  if (entries.items.length === 0) return mockFooter;
-
-  const item = entries.items[0].fields;
-  return {
-    copyright: item.copyright,
-    tagline: item.tagline,
-  };
+  try {
+    const data = await fetchContentful('footer');
+    if (!data) return mockFooter;
+    return data;
+  } catch (error) {
+    return mockFooter;
+  }
 }
 
 // Mock data for site settings
@@ -263,85 +191,40 @@ const mockContactPage = {
 };
 
 export async function getSiteSettings() {
-  if (isDemo) return mockSiteSettings;
+  if (shouldUseDemo) return mockSiteSettings;
 
-  const entries = await client.getEntries({
-    content_type: 'siteSettings',
-    limit: 1,
-  });
-
-  if (entries.items.length === 0) return mockSiteSettings;
-
-  const item = entries.items[0].fields;
-  return {
-    logoText: item.logoText || mockSiteSettings.logoText,
-    heroBadgeText: item.heroBadgeText || mockSiteSettings.heroBadgeText,
-    backToPostsText: item.backToPostsText || mockSiteSettings.backToPostsText,
-    backToHomeText: item.backToHomeText || mockSiteSettings.backToHomeText,
-    notFoundTitle: item.notFoundTitle || mockSiteSettings.notFoundTitle,
-    notFoundMessage: item.notFoundMessage || mockSiteSettings.notFoundMessage,
-    loadingText: item.loadingText || mockSiteSettings.loadingText,
-    defaultSiteTitle: item.defaultSiteTitle || mockSiteSettings.defaultSiteTitle,
-    defaultSiteDescription: item.defaultSiteDescription || mockSiteSettings.defaultSiteDescription,
-    contactEmail: item.contactEmail || mockSiteSettings.contactEmail,
-    githubUrl: item.githubUrl || mockSiteSettings.githubUrl,
-    linkedinUrl: item.linkedinUrl || mockSiteSettings.linkedinUrl,
-    twitterUrl: item.twitterUrl || mockSiteSettings.twitterUrl,
-  };
+  try {
+    const data = await fetchContentful('siteSettings');
+    return data || mockSiteSettings;
+  } catch (error) {
+    return mockSiteSettings;
+  }
 }
 
 export async function getResumePage() {
-  if (isDemo) return mockResumePage;
+  if (shouldUseDemo) return mockResumePage;
 
-  const entries = await client.getEntries({
-    content_type: 'resumePage',
-    limit: 1,
-  });
-
-  if (entries.items.length === 0) return mockResumePage;
-
-  const item = entries.items[0].fields;
-  return {
-    fullName: item.fullName || mockResumePage.fullName,
-    location: item.location || mockResumePage.location,
-    phone: item.phone || mockResumePage.phone,
-    email: item.email || mockResumePage.email,
-    linkedinUrl: item.linkedinUrl || mockResumePage.linkedinUrl,
-    portfolioUrl: item.portfolioUrl || mockResumePage.portfolioUrl,
-    professionalSummary: item.professionalSummary || mockResumePage.professionalSummary,
-    keyAchievements: item.keyAchievements || mockResumePage.keyAchievements,
-    experience: item.experience || mockResumePage.experience,
-    technicalSkills: item.technicalSkills || mockResumePage.technicalSkills,
-    education: item.education || mockResumePage.education,
-    certifications: item.certifications || mockResumePage.certifications,
-    pdfUrl: item.pdfUrl || mockResumePage.pdfUrl,
-    seoTitle: item.seoTitle || mockResumePage.seoTitle,
-    seoDescription: item.seoDescription || mockResumePage.seoDescription,
-  };
+  try {
+    const data = await fetchContentful('resumePage');
+    return data || mockResumePage;
+  } catch (error) {
+    return mockResumePage;
+  }
 }
 
 export async function getContactPage() {
-  if (isDemo) return mockContactPage;
+  if (shouldUseDemo) return mockContactPage;
 
-  const entries = await client.getEntries({
-    content_type: 'contactPage',
-    limit: 1,
-  });
-
-  if (entries.items.length === 0) return mockContactPage;
-
-  const item = entries.items[0].fields;
-  return {
-    pageTitle: item.pageTitle || mockContactPage.pageTitle,
-    pageSubtitle: item.pageSubtitle || mockContactPage.pageSubtitle,
-    seoTitle: item.seoTitle || mockContactPage.seoTitle,
-    seoDescription: item.seoDescription || mockContactPage.seoDescription,
-    introText: item.introText || mockContactPage.introText,
-  };
+  try {
+    const data = await fetchContentful('contactPage');
+    return data || mockContactPage;
+  } catch (error) {
+    return mockContactPage;
+  }
 }
 
 export async function getRelatedPosts(currentSlug, tags, limit = 2) {
-  if (isDemo) {
+  if (shouldUseDemo) {
     // For demo, return posts that share at least one tag
     const currentTagSlugs = tags.map((t) => t.slug);
     return mockPosts
@@ -350,36 +233,14 @@ export async function getRelatedPosts(currentSlug, tags, limit = 2) {
       .slice(0, limit);
   }
 
-  // Get all posts first (we need to filter by common tags)
-  const entries = await client.getEntries({
-    content_type: 'blogPost',
-    order: '-fields.publishDate',
-    include: 2,
-    limit: 20,
-  });
-
-  const currentTagSlugs = tags.map((t) => t.slug);
-
-  // Find posts with common tags, excluding the current post
-  const relatedPosts = entries.items
-    .filter((item) => item.fields.slug !== currentSlug)
-    .map((item) => {
-      const postTags = extractTags(item.fields.tags, entries.includes);
-      const commonTags = postTags.filter((t) => currentTagSlugs.includes(t.slug));
-      return {
-        slug: item.fields.slug,
-        title: item.fields.title,
-        excerpt: item.fields.excerpt,
-        publishDate: item.fields.publishDate,
-        tags: postTags,
-        mainImage: getImageUrl(item.fields.mainImage),
-        thumbnailImage: getImageUrl(item.fields.thumbnailImage),
-        commonTagCount: commonTags.length,
-      };
-    })
-    .filter((post) => post.commonTagCount > 0)
-    .sort((a, b) => b.commonTagCount - a.commonTagCount || new Date(b.publishDate) - new Date(a.publishDate))
-    .slice(0, limit);
-
-  return relatedPosts;
+  try {
+    const data = await fetchContentful('relatedPosts', {
+      currentSlug,
+      tags: JSON.stringify(tags),
+      limit: String(limit),
+    });
+    return data || [];
+  } catch (error) {
+    return [];
+  }
 }
