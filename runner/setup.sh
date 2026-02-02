@@ -86,12 +86,16 @@ RUNNER_NAME="local-${HOSTNAME}"
 
 echo ""
 echo "Configuring runner as '${RUNNER_NAME}'..."
+# Use a work directory without spaces to avoid bash issues
+WORK_DIR="/tmp/github-runner-work"
+mkdir -p "$WORK_DIR"
+
 ./config.sh \
     --url https://github.com/jonesopolis/jonesopolis.github.io \
     --token "$TOKEN" \
     --name "$RUNNER_NAME" \
     --labels "self-hosted,$OS,$ARCH" \
-    --work "$RUNNER_DIR/_work" \
+    --work "$WORK_DIR" \
     --unattended
 
 echo ""
