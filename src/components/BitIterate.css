@@ -15,289 +15,199 @@
   justify-content: center;
 }
 
-/* Base styles - arc tears hidden initially */
-.sad-v1 .tear-arc-left,
-.sad-v1 .tear-arc-right,
-.sad-v2 .tear-arc-left,
-.sad-v2 .tear-arc-right,
-.sad-v5 .tear-arc-left,
-.sad-v5 .tear-arc-right,
-.sad-v6 .tear-arc-left,
-.sad-v6 .tear-arc-right,
-.sad-v7 .tear-arc-left,
-.sad-v7 .tear-arc-right,
-.sad-v8 .tear-arc-left,
-.sad-v8 .tear-arc-right {
-  stroke-dasharray: 30;
-  stroke-dashoffset: 30;
-}
-
-/* V3 single arcs with eye squint */
-.sad-v3 .tear-arc-left,
-.sad-v3 .tear-arc-right {
-  stroke-dasharray: 30;
-  stroke-dashoffset: 30;
-}
-
-/* V4 triple arcs */
-.sad-v4 .tear-arc-left-1,
-.sad-v4 .tear-arc-left-2,
-.sad-v4 .tear-arc-left-3,
-.sad-v4 .tear-arc-right-1,
-.sad-v4 .tear-arc-right-2,
-.sad-v4 .tear-arc-right-3 {
-  stroke-dasharray: 22;
-  stroke-dashoffset: 22;
-}
-
 /* ================================
-   V1: Gentle Sob - subtle movement
+   Shared Eye Squint - subtle (half as far)
    ================================ */
-.sad-v1 .sobbing-group {
-  transform-origin: 32px 27px;
-}
-
-.sad-v1:hover .sobbing-group {
-  animation: gentle-sob 1.2s ease-in-out infinite;
-}
-
-.sad-v1:hover .tear-arc-left,
-.sad-v1:hover .tear-arc-right {
-  animation: arc-draw-slow 2.5s ease-out infinite;
-}
-
-@keyframes gentle-sob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(1px); }
-}
-
-/* ================================
-   V2: Heavy Sob - more pronounced
-   ================================ */
-.sad-v2 .sobbing-group {
-  transform-origin: 32px 27px;
-}
-
-.sad-v2:hover .sobbing-group {
-  animation: heavy-sob 0.6s ease-in-out infinite;
-}
-
-.sad-v2:hover .tear-arc-left,
-.sad-v2:hover .tear-arc-right {
-  animation: arc-draw-slow 2s ease-out infinite;
-}
-
-@keyframes heavy-sob {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-2px) rotate(-2deg); }
-  50% { transform: translateY(2px) rotate(0deg); }
-  75% { transform: translateY(-1px) rotate(2deg); }
-}
-
-/* ================================
-   V3: Eye Squint
-   ================================ */
-.sad-v3 .sobbing-group {
-  transform-origin: 32px 27px;
-}
-
-.sad-v3:hover .sobbing-group {
-  animation: gentle-sob 1s ease-in-out infinite;
-}
-
+.sad-v1 .eye-left,
+.sad-v1 .eye-right,
+.sad-v2 .eye-left,
+.sad-v2 .eye-right,
 .sad-v3 .eye-left,
-.sad-v3 .eye-right {
+.sad-v3 .eye-right,
+.sad-v4 .eye-left,
+.sad-v4 .eye-right,
+.sad-v5 .eye-left,
+.sad-v5 .eye-right,
+.sad-v6 .eye-left,
+.sad-v6 .eye-right,
+.sad-v7 .eye-left,
+.sad-v7 .eye-right,
+.sad-v8 .eye-left,
+.sad-v8 .eye-right {
   transform-origin: center;
 }
 
+.sad-v1:hover .eye-left,
+.sad-v1:hover .eye-right,
+.sad-v2:hover .eye-left,
+.sad-v2:hover .eye-right,
 .sad-v3:hover .eye-left,
-.sad-v3:hover .eye-right {
+.sad-v3:hover .eye-right,
+.sad-v4:hover .eye-left,
+.sad-v4:hover .eye-right,
+.sad-v6:hover .eye-left,
+.sad-v6:hover .eye-right,
+.sad-v7:hover .eye-left,
+.sad-v7:hover .eye-right,
+.sad-v8:hover .eye-left,
+.sad-v8:hover .eye-right {
   animation: eye-squint 1.2s ease-in-out infinite;
-}
-
-.sad-v3:hover .tear-arc-left,
-.sad-v3:hover .tear-arc-right {
-  animation: arc-draw-slow 2s ease-out infinite;
 }
 
 @keyframes eye-squint {
   0%, 100% { transform: scaleY(1); opacity: 1; }
-  50% { transform: scaleY(0.5); opacity: 0.6; }
+  50% { transform: scaleY(0.75); opacity: 0.85; }
 }
 
 /* ================================
-   V4: Triple Arc Spray
+   V1: Squint Only - just the eyes
    ================================ */
-.sad-v4 .sobbing-group {
-  transform-origin: 32px 27px;
-}
-
-.sad-v4:hover .sobbing-group {
-  animation: heavy-sob 0.8s ease-in-out infinite;
-}
-
-.sad-v4:hover .tear-arc-left-1,
-.sad-v4:hover .tear-arc-right-1 {
-  animation: arc-draw-slow 2s ease-out infinite;
-}
-
-.sad-v4:hover .tear-arc-left-2,
-.sad-v4:hover .tear-arc-right-2 {
-  animation: arc-draw-slow 2s ease-out 0.3s infinite;
-}
-
-.sad-v4:hover .tear-arc-left-3,
-.sad-v4:hover .tear-arc-right-3 {
-  animation: arc-draw-slow 2s ease-out 0.6s infinite;
-}
+/* No additional animations needed */
 
 /* ================================
-   V5: Longer Arcs
+   V2: Squint + Head Bob
    ================================ */
-.sad-v5 .tear-arc-left,
-.sad-v5 .tear-arc-right {
-  stroke-dasharray: 40;
-  stroke-dashoffset: 40;
-}
-
-.sad-v5 .sobbing-group {
-  transform-origin: 32px 27px;
-}
-
-.sad-v5:hover .sobbing-group {
-  animation: gentle-sob 1s ease-in-out infinite;
-}
-
-.sad-v5:hover .tear-arc-left,
-.sad-v5:hover .tear-arc-right {
-  animation: arc-draw-long 2.5s ease-out infinite;
-}
-
-@keyframes arc-draw-long {
-  0% { stroke-dashoffset: 40; }
-  40%, 100% { stroke-dashoffset: 0; }
-}
-
-/* ================================
-   V6: Thicker Arcs
-   ================================ */
-.sad-v6 .sobbing-group {
-  transform-origin: 32px 27px;
-}
-
-.sad-v6:hover .sobbing-group {
-  animation: heavy-sob 0.7s ease-in-out infinite;
-}
-
-.sad-v6:hover .tear-arc-left,
-.sad-v6:hover .tear-arc-right {
-  animation: arc-draw-slow 2s ease-out infinite;
-}
-
-/* ================================
-   V7: Alternating Arcs
-   ================================ */
-.sad-v7 .sobbing-group {
-  transform-origin: 32px 27px;
-}
-
-.sad-v7:hover .sobbing-group {
-  animation: alternating-tilt 2s ease-in-out infinite;
-}
-
-.sad-v7:hover .tear-arc-left {
-  animation: arc-draw-slow 2s ease-out infinite;
-}
-
-.sad-v7:hover .tear-arc-right {
-  animation: arc-draw-slow 2s ease-out 1s infinite;
-}
-
-@keyframes alternating-tilt {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-2deg); }
-  75% { transform: rotate(2deg); }
-}
-
-/* ================================
-   V8: Full Body Sob
-   ================================ */
-.sad-v8 .full-body-sob {
+.sad-v2 .head-group {
   transform-origin: 32px 40px;
 }
 
-.sad-v8:hover .full-body-sob {
-  animation: full-body-shudder 0.15s ease-in-out infinite;
+.sad-v2:hover .head-group {
+  animation: head-bob 1.5s ease-in-out infinite;
 }
 
-.sad-v8 .sobbing-group {
-  transform-origin: 32px 27px;
+@keyframes head-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
 }
 
-.sad-v8:hover .sobbing-group {
-  animation: heavy-sob 0.6s ease-in-out infinite;
+/* ================================
+   V3: Squint + Antenna Droop
+   ================================ */
+.sad-v3 .antenna-group {
+  transform-origin: 32px 14px;
 }
 
-.sad-v8:hover .tear-arc-left,
-.sad-v8:hover .tear-arc-right {
-  animation: arc-draw-slow 2s ease-out infinite;
+.sad-v3:hover .antenna-group {
+  animation: antenna-droop 2s ease-in-out infinite;
 }
 
-@keyframes full-body-shudder {
+@keyframes antenna-droop {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(-10deg) translateY(2px); }
+}
+
+/* ================================
+   V4: Squint + Body Shudder
+   ================================ */
+.sad-v4 .body-group {
+  transform-origin: 32px 40px;
+}
+
+.sad-v4:hover .body-group {
+  animation: body-shudder 0.15s ease-in-out infinite;
+}
+
+@keyframes body-shudder {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-0.5px); }
   75% { transform: translateX(0.5px); }
 }
 
 /* ================================
-   Shared Keyframes
+   V5: Squint + Slow Blink
    ================================ */
-@keyframes arc-draw-slow {
-  0% { stroke-dashoffset: 30; }
-  40%, 100% { stroke-dashoffset: 0; }
+.sad-v5:hover .eye-left,
+.sad-v5:hover .eye-right {
+  animation: slow-blink 2.5s ease-in-out infinite;
+}
+
+@keyframes slow-blink {
+  0%, 70%, 100% { transform: scaleY(1); opacity: 1; }
+  40% { transform: scaleY(0.75); opacity: 0.85; }
+  50% { transform: scaleY(0.2); opacity: 0.5; }
+  60% { transform: scaleY(0.75); opacity: 0.85; }
 }
 
 /* ================================
-   Arm Droop Animation for all
+   V6: Squint + Arm Droop
    ================================ */
-.sad-v1 .arm-left,
-.sad-v2 .arm-left,
-.sad-v3 .arm-left,
-.sad-v4 .arm-left,
-.sad-v5 .arm-left,
 .sad-v6 .arm-left,
-.sad-v7 .arm-left,
-.sad-v8 .arm-left,
-.sad-v1 .arm-right,
-.sad-v2 .arm-right,
-.sad-v3 .arm-right,
-.sad-v4 .arm-right,
-.sad-v5 .arm-right,
-.sad-v6 .arm-right,
-.sad-v7 .arm-right,
-.sad-v8 .arm-right {
+.sad-v6 .arm-right {
   transition: transform 0.4s ease;
   transform-origin: top center;
 }
 
-.sad-v1:hover .arm-left,
-.sad-v2:hover .arm-left,
-.sad-v3:hover .arm-left,
-.sad-v4:hover .arm-left,
-.sad-v5:hover .arm-left,
-.sad-v6:hover .arm-left,
-.sad-v7:hover .arm-left,
-.sad-v8:hover .arm-left {
-  transform: rotate(5deg);
+.sad-v6:hover .arm-left {
+  animation: arm-droop-left 2s ease-in-out infinite;
 }
 
-.sad-v1:hover .arm-right,
-.sad-v2:hover .arm-right,
-.sad-v3:hover .arm-right,
-.sad-v4:hover .arm-right,
-.sad-v5:hover .arm-right,
-.sad-v6:hover .arm-right,
-.sad-v7:hover .arm-right,
+.sad-v6:hover .arm-right {
+  animation: arm-droop-right 2s ease-in-out infinite;
+}
+
+@keyframes arm-droop-left {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(8deg); }
+}
+
+@keyframes arm-droop-right {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-8deg); }
+}
+
+/* ================================
+   V7: Squint + Head Tilt
+   ================================ */
+.sad-v7 .head-group {
+  transform-origin: 32px 40px;
+}
+
+.sad-v7:hover .head-group {
+  animation: head-tilt 3s ease-in-out infinite;
+}
+
+@keyframes head-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+/* ================================
+   V8: Squint + Everything
+   ================================ */
+.sad-v8 .body-group {
+  transform-origin: 32px 40px;
+}
+
+.sad-v8:hover .body-group {
+  animation: body-shudder 0.2s ease-in-out infinite;
+}
+
+.sad-v8 .head-group {
+  transform-origin: 32px 27px;
+}
+
+.sad-v8:hover .head-group {
+  animation: head-bob 1.5s ease-in-out infinite;
+}
+
+.sad-v8 .antenna-group {
+  transform-origin: 32px 14px;
+}
+
+.sad-v8:hover .antenna-group {
+  animation: antenna-droop 2s ease-in-out infinite;
+}
+
+.sad-v8 .arm-left,
+.sad-v8 .arm-right {
+  transform-origin: top center;
+}
+
+.sad-v8:hover .arm-left {
+  animation: arm-droop-left 2s ease-in-out infinite;
+}
+
 .sad-v8:hover .arm-right {
-  transform: rotate(-5deg);
+  animation: arm-droop-right 2s ease-in-out infinite;
 }
