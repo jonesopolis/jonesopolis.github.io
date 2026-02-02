@@ -1,5 +1,3 @@
-const shouldUseDemo = import.meta.env.MODE === 'development';
-
 async function fetchContentful(type, params = {}) {
   const searchParams = new URLSearchParams({ type, ...params });
   const response = await fetch(`/api/contentful?${searchParams.toString()}`);
@@ -108,8 +106,6 @@ const footer = {
 };
 
 export async function getHero() {
-  if (shouldUseDemo) return hero;
-
   try {
     const data = await fetchContentful('hero');
     if (!data) return hero;
@@ -120,8 +116,6 @@ export async function getHero() {
 }
 
 export async function getPosts() {
-  if (shouldUseDemo) return posts;
-
   try {
     const data = await fetchContentful('posts');
     return data || posts;
@@ -131,10 +125,6 @@ export async function getPosts() {
 }
 
 export async function getPostBySlug(slug) {
-  if (shouldUseDemo) {
-    return posts.find((p) => p.slug === slug) || null;
-  }
-
   try {
     const data = await fetchContentful('postBySlug', { slug });
     if (!data) return null;
@@ -145,8 +135,6 @@ export async function getPostBySlug(slug) {
 }
 
 export async function getFooter() {
-  if (shouldUseDemo) return footer;
-
   try {
     const data = await fetchContentful('footer');
     if (!data) return footer;
@@ -215,8 +203,6 @@ const contactPage = {
 };
 
 export async function getSiteSettings() {
-  if (shouldUseDemo) return siteSettings;
-
   try {
     const data = await fetchContentful('siteSettings');
     return data || siteSettings;
@@ -226,8 +212,6 @@ export async function getSiteSettings() {
 }
 
 export async function getResumePage() {
-  if (shouldUseDemo) return resumePage;
-
   try {
     const data = await fetchContentful('resumePage');
     return data || resumePage;
@@ -237,8 +221,6 @@ export async function getResumePage() {
 }
 
 export async function getContactPage() {
-  if (shouldUseDemo) return contactPage;
-
   try {
     const data = await fetchContentful('contactPage');
     return data || contactPage;
@@ -248,15 +230,6 @@ export async function getContactPage() {
 }
 
 export async function getRelatedPosts(currentSlug, tags, limit = 2) {
-  if (shouldUseDemo) {
-    // For demo, return posts that share at least one tag
-    const currentTagSlugs = tags.map((t) => t.slug);
-    return posts
-      .filter((p) => p.slug !== currentSlug)
-      .filter((p) => p.tags.some((t) => currentTagSlugs.includes(t.slug)))
-      .slice(0, limit);
-  }
-
   try {
     const data = await fetchContentful('relatedPosts', {
       currentSlug,
@@ -265,6 +238,11 @@ export async function getRelatedPosts(currentSlug, tags, limit = 2) {
     });
     return data || [];
   } catch (error) {
-    return [];
+    // Fallback for demo
+    const currentTagSlugs = tags.map((t) => t.slug);
+    return posts
+      .filter((p) => p.slug !== currentSlug)
+      .filter((p) => p.tags.some((t) => currentTagSlugs.includes(t.slug)))
+      .slice(0, limit);
   }
 }
