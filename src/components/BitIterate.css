@@ -32,13 +32,11 @@
   stroke-dashoffset: 30;
 }
 
-/* V3 double arcs */
-.sad-v3 .tear-arc-left-1,
-.sad-v3 .tear-arc-left-2,
-.sad-v3 .tear-arc-right-1,
-.sad-v3 .tear-arc-right-2 {
-  stroke-dasharray: 25;
-  stroke-dashoffset: 25;
+/* V3 single arcs with eye squint */
+.sad-v3 .tear-arc-left,
+.sad-v3 .tear-arc-right {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
 }
 
 /* V4 triple arcs */
@@ -97,7 +95,7 @@
 }
 
 /* ================================
-   V3: Double Arc
+   V3: Eye Squint
    ================================ */
 .sad-v3 .sobbing-group {
   transform-origin: 32px 27px;
@@ -107,14 +105,24 @@
   animation: gentle-sob 1s ease-in-out infinite;
 }
 
-.sad-v3:hover .tear-arc-left-1,
-.sad-v3:hover .tear-arc-right-1 {
+.sad-v3 .eye-left,
+.sad-v3 .eye-right {
+  transform-origin: center;
+}
+
+.sad-v3:hover .eye-left,
+.sad-v3:hover .eye-right {
+  animation: eye-squint 1.2s ease-in-out infinite;
+}
+
+.sad-v3:hover .tear-arc-left,
+.sad-v3:hover .tear-arc-right {
   animation: arc-draw-slow 2s ease-out infinite;
 }
 
-.sad-v3:hover .tear-arc-left-2,
-.sad-v3:hover .tear-arc-right-2 {
-  animation: arc-draw-slow 2s ease-out 0.4s infinite;
+@keyframes eye-squint {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.5); opacity: 0.6; }
 }
 
 /* ================================

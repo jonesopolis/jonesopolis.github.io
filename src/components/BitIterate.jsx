@@ -69,8 +69,8 @@ const sadVariations = [
   },
   {
     id: 'v3',
-    name: 'V3: Double Arc',
-    description: 'Two tear arcs per side',
+    name: 'V3: Eye Squint',
+    description: 'Eyes squint/pulse while crying',
     svg: (size) => (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 64 82" fill="currentColor" width={size} height={size * 1.25} className="sad-v3">
         <g className="sobbing-group">
@@ -79,11 +79,9 @@ const sadVariations = [
           <rect className="head" x="16" y="14" width="32" height="26" rx="8" ry="8" fill="none" stroke="currentColor" strokeWidth="3"/>
           <line className="eye-left" x1="22" y1="28" x2="28" y2="25" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
           <line className="eye-right" x1="36" y1="25" x2="42" y2="28" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          {/* Double arcs */}
-          <path className="tear-arc-left-1" d="M14 25 Q7 17 3 25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
-          <path className="tear-arc-left-2" d="M14 30 Q6 23 2 31" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
-          <path className="tear-arc-right-1" d="M50 25 Q57 17 61 25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
-          <path className="tear-arc-right-2" d="M50 30 Q58 23 62 31" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
+          {/* Single arc with eye squint */}
+          <path className="tear-arc-left" d="M14 27 Q6 18 2 28" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
+          <path className="tear-arc-right" d="M50 27 Q58 18 62 28" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
         </g>
         <rect className="body" x="26" y="46" width="12" height="18" rx="3" ry="3" fill="none" stroke="currentColor" strokeWidth="3"/>
         <circle cx="32" cy="52" r="1.5"/>
