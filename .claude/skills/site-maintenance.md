@@ -1,12 +1,12 @@
 # Learning AI Blog - Site Maintenance Skill
 
 ## Overview
-This skill covers maintaining the Learning AI blog, a React SPA powered by Contentful CMS and deployed to Netlify.
+This skill covers maintaining the Learning AI blog, a React SPA powered by Contentful CMS and deployed to GitHub Pages.
 
 ## Tech Stack
 - **Frontend**: React 18 + React Router + Vite
 - **CMS**: Contentful (headless)
-- **Hosting**: Netlify
+- **Hosting**: GitHub Pages
 - **Font**: Fira Code
 
 ## Environment Variables
@@ -163,19 +163,17 @@ rm -rf "/path/to/blog/assets"
 
 ## Build & Deploy Workflow
 
-### Always deploy after making changes:
+### Deployment via GitHub Pages:
+Push changes to GitHub and GitHub Actions will automatically build and deploy:
+
 ```bash
-cd "/Users/jones/Library/Mobile Documents/com~apple~CloudDocs/blog"
-npm run build && npx netlify deploy --prod --dir=dist --no-build
+git add . && git commit -m "Update site" && git push
 ```
 
-### Key flags:
-- `--prod`: Deploy to production
-- `--dir=dist`: Specify built output directory
-- `--no-build`: Skip Netlify's build (we already ran Vite build with .env)
-
-### Why `--no-build`?
-Netlify CLI's built-in build doesn't have access to our local `.env` file, causing Contentful credentials to be missing. We build locally first (Vite loads `.env`), then deploy the pre-built `dist`.
+For local testing before deployment:
+```bash
+npm run build
+```
 
 ---
 
@@ -294,8 +292,8 @@ blog/
 - Check for syntax errors in contentful.js
 
 ### Deploy shows old content?
-- Make sure to run `npm run build` before deploy
-- Use `--no-build` flag with netlify deploy
+- Push to GitHub to trigger GitHub Actions deployment
+- Wait for GitHub Actions workflow to complete
 - Clear browser cache or use incognito
 
 ### SVGs not responding to theme?

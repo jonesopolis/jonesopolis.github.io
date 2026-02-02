@@ -26,8 +26,8 @@ npm-debug.log*
 # Cache
 .cache/
 
-# Local Netlify folder
-.netlify
-
 # Local SSL certificates
 certs/
+
+# GitHub Actions runner binaries (setup.sh downloads these)
+runner/.runner/

@@ -29,7 +29,7 @@ Claude has specialized skills defined in `.claude/skills/`:
 - Creating new blog posts from ideas/dictation
 - Updating Contentful CMS content
 - Generating SVG images (800x200, circles/lines style)
-- Building and deploying to Netlify
+- Building and deploying to GitHub Pages
 - Complex multi-step content workflows
 
 ---

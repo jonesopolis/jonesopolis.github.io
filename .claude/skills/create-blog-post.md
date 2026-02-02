@@ -233,19 +233,13 @@ Tool: mcp__contentful__publish_entry
 - entryId: [entry_id]
 ```
 
-4. **Build and Deploy**
-```bash
-cd "/Users/jones/Library/Mobile Documents/com~apple~CloudDocs/blog"
-npm run build && npx netlify deploy --prod --dir=dist --no-build
-```
-
-5. **Confirm to User**
+4. **Confirm to User**
 ```
 ✅ Blog post published!
 
-Live at: https://jones-blogs.netlify.app/post/[slug]
-
 Contentful entry: https://app.contentful.com/spaces/0p9g4pxrt6uv/entries/[entry_id]
+
+Note: Push to GitHub to trigger deployment to GitHub Pages.
 ```
 
 ---
@@ -297,4 +291,3 @@ Always use `#000000` - never `currentColor` or other colors. The CSS mask-image 
 - [ ] User reviewed and approved
 - [ ] Assets published
 - [ ] Entry published
-- [ ] Site built and deployed

@@ -4,11 +4,11 @@ Instructions for AI agents (GitHub Copilot, Claude) working on this repository.
 
 ## Project Overview
 
-This is a React SPA blog about learning AI, powered by Contentful CMS and deployed to Netlify.
+This is a React SPA blog about learning AI, powered by Contentful CMS and deployed to GitHub Pages.
 
 - **Frontend**: React 18 + React Router + Vite
 - **CMS**: Contentful (headless)
-- **Hosting**: Netlify
+- **Hosting**: GitHub Pages
 - **AI Model**: Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 
 ## Project Structure
@@ -76,10 +76,11 @@ Blog post images follow strict requirements:
 
 ## Deployment
 
-Always build locally then deploy (to include .env variables):
+Build and push to GitHub - GitHub Actions handles deployment to GitHub Pages:
 
 ```bash
-npm run build && npx netlify deploy --prod --dir=dist --no-build
+npm run build
+git add . && git commit -m "Build for deployment" && git push
 ```
 
 ## Code Conventions
