@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   build:
+    runs-on: [ubuntu-latest, ubuntu-22.04, ubuntu-20.04, macos-latest, macos-13, windows-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
