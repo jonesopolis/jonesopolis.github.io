@@ -15,7 +15,7 @@
   justify-content: center;
 }
 
-/* Base sad robot animations */
+/* Base sad robot styles */
 .sad-v1,
 .sad-v2,
 .sad-v3,
@@ -27,313 +27,303 @@
   transition: transform 0.3s ease;
 }
 
-.sad-v1:hover,
-.sad-v2:hover,
-.sad-v3:hover,
-.sad-v4:hover,
-.sad-v5:hover,
-.sad-v6:hover,
-.sad-v7:hover,
-.sad-v8:hover {
-  transform: translateY(2px);
-}
-
-/* Droopy antenna animation for all */
-.sad-v1 .antenna-ball,
-.sad-v2 .antenna-ball,
-.sad-v3 .antenna-ball,
-.sad-v4 .antenna-ball,
-.sad-v5 .antenna-ball,
-.sad-v6 .antenna-ball,
-.sad-v7 .antenna-ball,
-.sad-v8 .antenna-ball {
-  transition: transform 0.4s ease;
-  transform-origin: center bottom;
-}
-
-.sad-v1:hover .antenna-ball,
-.sad-v2:hover .antenna-ball,
-.sad-v3:hover .antenna-ball,
-.sad-v4:hover .antenna-ball,
-.sad-v5:hover .antenna-ball,
-.sad-v6:hover .antenna-ball,
-.sad-v7:hover .antenna-ball,
-.sad-v8:hover .antenna-ball {
-  transform: translateY(2px);
-}
-
-/* V1: Single tear pulse */
-.sad-v1 .tear-left,
-.sad-v1 .tear-right {
-  animation: none;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.sad-v1:hover .tear-left {
-  animation: tear-shoot-left 0.8s ease-in-out infinite;
-}
-
-.sad-v1:hover .tear-right {
-  animation: tear-shoot-right 0.8s ease-in-out infinite;
-}
-
-@keyframes tear-shoot-left {
-  0%, 100% { transform: translateX(0); opacity: 1; }
-  50% { transform: translateX(-4px); opacity: 0.7; }
-}
-
-@keyframes tear-shoot-right {
-  0%, 100% { transform: translateX(0); opacity: 1; }
-  50% { transform: translateX(4px); opacity: 0.7; }
-}
-
-/* V2: Double tears cascade */
-.sad-v2 .tear-left-1,
-.sad-v2 .tear-left-2,
-.sad-v2 .tear-right-1,
-.sad-v2 .tear-right-2 {
-  transition: transform 0.3s ease;
-}
-
-.sad-v2:hover .tear-left-1 {
-  animation: tear-cascade-left 0.6s ease-in-out infinite;
-}
-
-.sad-v2:hover .tear-left-2 {
-  animation: tear-cascade-left 0.6s ease-in-out 0.15s infinite;
-}
-
-.sad-v2:hover .tear-right-1 {
-  animation: tear-cascade-right 0.6s ease-in-out infinite;
-}
-
-.sad-v2:hover .tear-right-2 {
-  animation: tear-cascade-right 0.6s ease-in-out 0.15s infinite;
-}
-
-@keyframes tear-cascade-left {
-  0%, 100% { transform: translateX(0) scale(1); }
-  50% { transform: translateX(-3px) scale(1.1); }
-}
-
-@keyframes tear-cascade-right {
-  0%, 100% { transform: translateX(0) scale(1); }
-  50% { transform: translateX(3px) scale(1.1); }
-}
-
-/* V3: Triple spray fan out */
-.sad-v3 .tear-left-1,
-.sad-v3 .tear-left-2,
-.sad-v3 .tear-left-3,
-.sad-v3 .tear-right-1,
-.sad-v3 .tear-right-2,
-.sad-v3 .tear-right-3 {
-  transition: transform 0.2s ease;
-}
-
-.sad-v3:hover .tear-left-1 {
-  animation: spray-fan-left-up 0.5s ease-in-out infinite;
-}
-
-.sad-v3:hover .tear-left-2 {
-  animation: spray-fan-left-mid 0.5s ease-in-out 0.1s infinite;
-}
-
-.sad-v3:hover .tear-left-3 {
-  animation: spray-fan-left-down 0.5s ease-in-out 0.2s infinite;
-}
-
-.sad-v3:hover .tear-right-1 {
-  animation: spray-fan-right-up 0.5s ease-in-out infinite;
-}
-
-.sad-v3:hover .tear-right-2 {
-  animation: spray-fan-right-mid 0.5s ease-in-out 0.1s infinite;
-}
-
-.sad-v3:hover .tear-right-3 {
-  animation: spray-fan-right-down 0.5s ease-in-out 0.2s infinite;
-}
-
-@keyframes spray-fan-left-up {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-4px, -2px); }
-}
-
-@keyframes spray-fan-left-mid {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-5px, 0); }
-}
-
-@keyframes spray-fan-left-down {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-4px, 2px); }
-}
-
-@keyframes spray-fan-right-up {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(4px, -2px); }
-}
-
-@keyframes spray-fan-right-mid {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(5px, 0); }
-}
-
-@keyframes spray-fan-right-down {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(4px, 2px); }
-}
-
-/* V4: Streaming lines pulse */
-.sad-v4 .tear-stream-left-1,
-.sad-v4 .tear-stream-left-2,
-.sad-v4 .tear-stream-right-1,
-.sad-v4 .tear-stream-right-2 {
-  stroke-dasharray: 12;
-  stroke-dashoffset: 0;
-}
-
-.sad-v4:hover .tear-stream-left-1,
-.sad-v4:hover .tear-stream-left-2 {
-  animation: stream-flow-left 0.4s linear infinite;
-}
-
-.sad-v4:hover .tear-stream-right-1,
-.sad-v4:hover .tear-stream-right-2 {
-  animation: stream-flow-right 0.4s linear infinite;
-}
-
-@keyframes stream-flow-left {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: -24; }
-}
-
-@keyframes stream-flow-right {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 24; }
-}
-
-/* V5: Ellipse tears bounce */
-.sad-v5 .tear-left-1,
-.sad-v5 .tear-left-2,
-.sad-v5 .tear-right-1,
-.sad-v5 .tear-right-2 {
-  transition: transform 0.2s ease;
-}
-
-.sad-v5:hover .tear-left-1 {
-  animation: ellipse-bounce-left 0.4s ease-in-out infinite;
-}
-
-.sad-v5:hover .tear-left-2 {
-  animation: ellipse-bounce-left 0.4s ease-in-out 0.2s infinite;
-}
-
-.sad-v5:hover .tear-right-1 {
-  animation: ellipse-bounce-right 0.4s ease-in-out infinite;
-}
-
-.sad-v5:hover .tear-right-2 {
-  animation: ellipse-bounce-right 0.4s ease-in-out 0.2s infinite;
-}
-
-@keyframes ellipse-bounce-left {
-  0%, 100% { transform: translateX(0) scaleX(1); }
-  50% { transform: translateX(-3px) scaleX(1.2); }
-}
-
-@keyframes ellipse-bounce-right {
-  0%, 100% { transform: translateX(0) scaleX(1); }
-  50% { transform: translateX(3px) scaleX(1.2); }
-}
-
-/* V6: Fountain arc animation */
+/* Shared fountain tear animation - SLOW (2s duration) */
+.sad-v1 .tear-arc-left,
+.sad-v1 .tear-arc-right,
+.sad-v2 .tear-arc-left,
+.sad-v2 .tear-arc-right,
+.sad-v3 .tear-arc-left,
+.sad-v3 .tear-arc-right,
+.sad-v5 .tear-arc-left,
+.sad-v5 .tear-arc-right,
 .sad-v6 .tear-arc-left,
-.sad-v6 .tear-arc-right {
+.sad-v6 .tear-arc-right,
+.sad-v7 .tear-arc-left,
+.sad-v7 .tear-arc-right,
+.sad-v8 .tear-arc-left,
+.sad-v8 .tear-arc-right {
   stroke-dasharray: 30;
   stroke-dashoffset: 30;
-  transition: stroke-dashoffset 0.3s ease;
 }
 
+.sad-v1 .tear-drop-left,
+.sad-v1 .tear-drop-right,
+.sad-v2 .tear-drop-left,
+.sad-v2 .tear-drop-right,
+.sad-v3 .tear-drop-left,
+.sad-v3 .tear-drop-right,
+.sad-v5 .tear-drop-left,
+.sad-v5 .tear-drop-right,
 .sad-v6 .tear-drop-left,
-.sad-v6 .tear-drop-right {
+.sad-v6 .tear-drop-right,
+.sad-v7 .tear-drop-left,
+.sad-v7 .tear-drop-right,
+.sad-v8 .tear-drop-left,
+.sad-v8 .tear-drop-right {
   opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
+/* V4 double tears */
+.sad-v4 .tear-arc-left-1,
+.sad-v4 .tear-arc-left-2,
+.sad-v4 .tear-arc-right-1,
+.sad-v4 .tear-arc-right-2 {
+  stroke-dasharray: 25;
+  stroke-dashoffset: 25;
+}
+
+.sad-v4 .tear-drop-left-1,
+.sad-v4 .tear-drop-left-2,
+.sad-v4 .tear-drop-right-1,
+.sad-v4 .tear-drop-right-2 {
+  opacity: 0;
+}
+
+/* ================================
+   V1: Fountain + Head Bob
+   ================================ */
+.sad-v1:hover .tear-arc-left,
+.sad-v1:hover .tear-arc-right {
+  animation: fountain-arc-slow 2s ease-out infinite;
+}
+
+.sad-v1:hover .tear-drop-left,
+.sad-v1:hover .tear-drop-right {
+  animation: fountain-drop-slow 2s ease-out infinite;
+}
+
+.sad-v1 .head-group {
+  transform-origin: center 40px;
+}
+
+.sad-v1:hover .head-group {
+  animation: head-bob 1.5s ease-in-out infinite;
+}
+
+@keyframes head-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
+
+/* ================================
+   V2: Fountain + Body Sway
+   ================================ */
+.sad-v2:hover .tear-arc-left,
+.sad-v2:hover .tear-arc-right {
+  animation: fountain-arc-slow 2s ease-out infinite;
+}
+
+.sad-v2:hover .tear-drop-left,
+.sad-v2:hover .tear-drop-right {
+  animation: fountain-drop-slow 2s ease-out infinite;
+}
+
+.sad-v2 .body-group {
+  transform-origin: center 64px;
+}
+
+.sad-v2:hover .body-group {
+  animation: body-sway 2.5s ease-in-out infinite;
+}
+
+@keyframes body-sway {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-1px) rotate(-1deg); }
+  75% { transform: translateX(1px) rotate(1deg); }
+}
+
+/* ================================
+   V3: Fountain + Eye Squint
+   ================================ */
+.sad-v3:hover .tear-arc-left,
+.sad-v3:hover .tear-arc-right {
+  animation: fountain-arc-slow 2s ease-out infinite;
+}
+
+.sad-v3:hover .tear-drop-left,
+.sad-v3:hover .tear-drop-right {
+  animation: fountain-drop-slow 2s ease-out infinite;
+}
+
+.sad-v3 .eye-left,
+.sad-v3 .eye-right {
+  transform-origin: center;
+}
+
+.sad-v3:hover .eye-left,
+.sad-v3:hover .eye-right {
+  animation: eye-squint 1.2s ease-in-out infinite;
+}
+
+@keyframes eye-squint {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.6); opacity: 0.7; }
+}
+
+/* ================================
+   V4: Double Fountain + Head Bob
+   ================================ */
+.sad-v4:hover .tear-arc-left-1,
+.sad-v4:hover .tear-arc-right-1 {
+  animation: fountain-arc-slow 2s ease-out infinite;
+}
+
+.sad-v4:hover .tear-arc-left-2,
+.sad-v4:hover .tear-arc-right-2 {
+  animation: fountain-arc-slow 2s ease-out 0.5s infinite;
+}
+
+.sad-v4:hover .tear-drop-left-1,
+.sad-v4:hover .tear-drop-right-1 {
+  animation: fountain-drop-slow 2s ease-out infinite;
+}
+
+.sad-v4:hover .tear-drop-left-2,
+.sad-v4:hover .tear-drop-right-2 {
+  animation: fountain-drop-slow 2s ease-out 0.5s infinite;
+}
+
+.sad-v4 .head-group {
+  transform-origin: center 40px;
+}
+
+.sad-v4:hover .head-group {
+  animation: head-bob 1.5s ease-in-out infinite;
+}
+
+/* ================================
+   V5: Fountain + Antenna Droop
+   ================================ */
+.sad-v5:hover .tear-arc-left,
+.sad-v5:hover .tear-arc-right {
+  animation: fountain-arc-slow 2s ease-out infinite;
+}
+
+.sad-v5:hover .tear-drop-left,
+.sad-v5:hover .tear-drop-right {
+  animation: fountain-drop-slow 2s ease-out infinite;
+}
+
+.sad-v5 .antenna-group {
+  transform-origin: 32px 14px;
+}
+
+.sad-v5:hover .antenna-group {
+  animation: antenna-droop 2s ease-in-out infinite;
+}
+
+@keyframes antenna-droop {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  30% { transform: rotate(-8deg) translateY(2px); }
+  60% { transform: rotate(8deg) translateY(2px); }
+}
+
+/* ================================
+   V6: Fountain + Full Body Shudder
+   ================================ */
 .sad-v6:hover .tear-arc-left,
 .sad-v6:hover .tear-arc-right {
-  animation: fountain-arc 0.8s ease-out infinite;
+  animation: fountain-arc-slow 2s ease-out infinite;
 }
 
 .sad-v6:hover .tear-drop-left,
 .sad-v6:hover .tear-drop-right {
-  animation: fountain-drop 0.8s ease-out infinite;
+  animation: fountain-drop-slow 2s ease-out infinite;
 }
 
-@keyframes fountain-arc {
+.sad-v6 .full-body {
+  transform-origin: center center;
+}
+
+.sad-v6:hover .full-body {
+  animation: body-shudder 0.15s ease-in-out infinite;
+}
+
+@keyframes body-shudder {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-0.5px); }
+  75% { transform: translateX(0.5px); }
+}
+
+/* ================================
+   V7: Fountain + Alternating Tears
+   ================================ */
+.sad-v7:hover .tear-arc-left {
+  animation: fountain-arc-slow 2s ease-out infinite;
+}
+
+.sad-v7:hover .tear-arc-right {
+  animation: fountain-arc-slow 2s ease-out 1s infinite;
+}
+
+.sad-v7:hover .tear-drop-left {
+  animation: fountain-drop-slow 2s ease-out infinite;
+}
+
+.sad-v7:hover .tear-drop-right {
+  animation: fountain-drop-slow 2s ease-out 1s infinite;
+}
+
+.sad-v7 .head-tilt-group {
+  transform-origin: 32px 40px;
+}
+
+.sad-v7:hover .head-tilt-group {
+  animation: head-tilt-alternate 2s ease-in-out infinite;
+}
+
+@keyframes head-tilt-alternate {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+/* ================================
+   V8: Fountain + Sobbing Motion
+   ================================ */
+.sad-v8:hover .tear-arc-left,
+.sad-v8:hover .tear-arc-right {
+  animation: fountain-arc-slow 2s ease-out infinite;
+}
+
+.sad-v8:hover .tear-drop-left,
+.sad-v8:hover .tear-drop-right {
+  animation: fountain-drop-slow 2s ease-out infinite;
+}
+
+.sad-v8 .sobbing-group {
+  transform-origin: 32px 27px;
+}
+
+.sad-v8:hover .sobbing-group {
+  animation: sobbing 0.8s ease-in-out infinite;
+}
+
+@keyframes sobbing {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  20% { transform: translateY(-1px) rotate(-1deg); }
+  40% { transform: translateY(1px) rotate(0deg); }
+  60% { transform: translateY(-1px) rotate(1deg); }
+  80% { transform: translateY(1px) rotate(0deg); }
+}
+
+/* ================================
+   Shared Keyframes - SLOW
+   ================================ */
+@keyframes fountain-arc-slow {
   0% { stroke-dashoffset: 30; }
-  50%, 100% { stroke-dashoffset: 0; }
+  40%, 100% { stroke-dashoffset: 0; }
 }
 
-@keyframes fountain-drop {
-  0%, 40% { opacity: 0; transform: scale(0.5); }
-  50% { opacity: 1; transform: scale(1.2); }
-  100% { opacity: 1; transform: scale(1); }
+@keyframes fountain-drop-slow {
+  0%, 30% { opacity: 0; transform: scale(0.5); }
+  40% { opacity: 1; transform: scale(1.3); }
+  50%, 100% { opacity: 1; transform: scale(1); }
 }
 
-/* V7: Gushing streams wobble */
-.sad-v7 .tear-gush-left,
-.sad-v7 .tear-gush-right {
-  transition: transform 0.2s ease;
-}
-
-.sad-v7:hover .tear-gush-left {
-  animation: gush-wobble-left 0.3s ease-in-out infinite;
-}
-
-.sad-v7:hover .tear-gush-right {
-  animation: gush-wobble-right 0.3s ease-in-out infinite;
-}
-
-@keyframes gush-wobble-left {
-  0%, 100% { transform: translateX(0) scaleX(1); }
-  25% { transform: translateX(-2px) scaleX(1.1); }
-  75% { transform: translateX(-1px) scaleX(0.95); }
-}
-
-@keyframes gush-wobble-right {
-  0%, 100% { transform: translateX(0) scaleX(1); }
-  25% { transform: translateX(2px) scaleX(1.1); }
-  75% { transform: translateX(1px) scaleX(0.95); }
-}
-
-/* V8: Minimal drop pulse */
-.sad-v8 .tear-left,
-.sad-v8 .tear-right {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.sad-v8:hover .tear-left {
-  animation: minimal-pulse-left 1s ease-in-out infinite;
-}
-
-.sad-v8:hover .tear-right {
-  animation: minimal-pulse-right 1s ease-in-out infinite;
-}
-
-@keyframes minimal-pulse-left {
-  0%, 100% { transform: translateX(0) scale(1); opacity: 1; }
-  50% { transform: translateX(-2px) scale(1.3); opacity: 0.8; }
-}
-
-@keyframes minimal-pulse-right {
-  0%, 100% { transform: translateX(0) scale(1); opacity: 1; }
-  50% { transform: translateX(2px) scale(1.3); opacity: 0.8; }
-}
-
-/* Arm droop animation for all sad variants */
+/* ================================
+   Arm Droop Animation for all
+   ================================ */
 .sad-v1 .arm-left,
 .sad-v2 .arm-left,
 .sad-v3 .arm-left,

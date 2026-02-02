@@ -39,6 +39,7 @@ blog/
 
 - **Main branch:** `master`
 - PRs should target `master`
+- **Auto-push for /bit/iterate:** When working on the `/bit/iterate` page, always push changes directly to master after making updates
 
 ## Tech Stack
 
