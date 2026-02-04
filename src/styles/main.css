@@ -2183,3 +2183,471 @@ html.dark-mode .error-oops {
     }
 }
 
+/* ==================== ITERATE PAGE ==================== */
+.iterate-page {
+    padding: 40px 0 80px;
+}
+
+.iterate-header {
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+.iterate-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: lowercase;
+}
+
+.iterate-header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.iterate-layout {
+    margin-bottom: 64px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+}
+
+.iterate-layout:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.iterate-layout-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.iterate-posts {
+    display: flex;
+    flex-direction: column;
+}
+
+.iterate-posts a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+}
+
+/* Layout 1: Hook only */
+.layout-1 {
+    gap: 8px;
+}
+
+.iterate-post-1 {
+    padding: 12px 16px;
+    border-radius: 4px;
+}
+
+.iterate-post-1:hover {
+    background: var(--bg-secondary);
+}
+
+.iterate-post-1 .hook {
+    color: var(--text-primary);
+    font-size: 15px;
+}
+
+.iterate-post-1:hover .hook {
+    color: var(--accent);
+}
+
+/* Layout 2: Hook + Title inline */
+.layout-2 {
+    gap: 4px;
+}
+
+.iterate-post-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    align-items: baseline;
+}
+
+.iterate-post-2:hover {
+    background: var(--bg-secondary);
+}
+
+.iterate-post-2 .hook {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.iterate-post-2 .title {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.iterate-post-2:hover .hook,
+.iterate-post-2:hover .title {
+    color: var(--accent);
+}
+
+/* Layout 3: Date + Hook */
+.layout-3 {
+    gap: 0;
+}
+
+.iterate-post-3 {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 24px;
+    padding: 10px 12px;
+    margin: 0 -12px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.iterate-post-3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--bg-secondary) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.iterate-post-3:hover::before {
+    opacity: 1;
+}
+
+.iterate-post-3 .date {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.iterate-post-3 .hook {
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.iterate-post-3:hover .date {
+    transform: translateX(-6px);
+    color: var(--accent);
+}
+
+.iterate-post-3:hover .hook {
+    color: var(--accent);
+    transform: translateX(10px);
+}
+
+.iterate-post-3 .date,
+.iterate-post-3 .hook {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Layout 4: Hook above title (stacked) */
+.layout-4 {
+    gap: 16px;
+}
+
+.iterate-post-4 {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.iterate-post-4:hover {
+    border-left-color: var(--accent);
+    padding-left: 20px;
+}
+
+.iterate-post-4 .hook {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-style: italic;
+}
+
+.iterate-post-4 .title {
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.iterate-post-4:hover .hook,
+.iterate-post-4:hover .title {
+    color: var(--accent);
+}
+
+/* Layout 5: Cards */
+.layout-5 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.iterate-post-5 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    transition: all 0.2s ease;
+}
+
+.iterate-post-5:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.iterate-post-5 .hook {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.iterate-post-5 .title {
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 600;
+    flex: 1;
+}
+
+.iterate-post-5 .date {
+    color: var(--text-secondary);
+    font-size: 11px;
+    margin-top: auto;
+}
+
+.iterate-post-5:hover .hook,
+.iterate-post-5:hover .title {
+    color: var(--accent);
+}
+
+/* Layout 6: Pull quote style */
+.layout-6 {
+    gap: 24px;
+}
+
+.iterate-post-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.iterate-post-6:hover {
+    background: var(--bg-tertiary);
+}
+
+.iterate-post-6 .hook {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.iterate-post-6 .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.iterate-post-6 .title {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.iterate-post-6 .date {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.iterate-post-6:hover .hook {
+    color: var(--accent);
+}
+
+/* Layout 7: Hook with arrow */
+.layout-7 {
+    gap: 0;
+}
+
+.iterate-post-7 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.iterate-post-7:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.iterate-post-7 .hook {
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.iterate-post-7 .arrow {
+    color: var(--text-secondary);
+    font-size: 16px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.iterate-post-7:hover .hook {
+    color: var(--accent);
+}
+
+.iterate-post-7:hover .arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+}
+
+/* Layout 8: Two column grid */
+.layout-8 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.iterate-post-8 {
+    padding: 16px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.iterate-post-8:hover {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+}
+
+.iterate-post-8 .hook {
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.iterate-post-8:hover .hook {
+    color: var(--accent);
+}
+
+/* Layout 9: Timeline */
+.layout-9 {
+    gap: 0;
+    padding-left: 20px;
+}
+
+.iterate-post-9 {
+    display: grid;
+    grid-template-columns: 80px 20px 1fr;
+    gap: 0;
+    align-items: start;
+    padding: 16px 0;
+}
+
+.iterate-post-9 .date {
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-align: right;
+    padding-right: 16px;
+}
+
+.iterate-post-9 .line {
+    position: relative;
+    height: 100%;
+}
+
+.iterate-post-9 .line::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: -32px;
+    width: 1px;
+    background: var(--border);
+    transform: translateX(-50%);
+}
+
+.iterate-post-9 .line::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--border);
+    background: var(--bg-primary);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    transition: all 0.2s ease;
+}
+
+.iterate-post-9:hover .line::after {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+.iterate-post-9:last-child .line::before {
+    display: none;
+}
+
+.iterate-post-9 .content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 16px;
+}
+
+.iterate-post-9 .hook {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-style: italic;
+}
+
+.iterate-post-9 .title {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.iterate-post-9:hover .hook,
+.iterate-post-9:hover .title {
+    color: var(--accent);
+}
+
+/* Responsive iterate page */
+@media (max-width: 768px) {
+    .iterate-post-2 {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .layout-5 {
+        grid-template-columns: 1fr;
+    }
+
+    .layout-8 {
+        grid-template-columns: 1fr;
+    }
+
+    .iterate-post-9 {
+        grid-template-columns: 60px 16px 1fr;
+    }
+
+    .iterate-post-9 .date {
+        font-size: 10px;
+    }
+}
+

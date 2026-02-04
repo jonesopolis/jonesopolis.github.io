@@ -7,6 +7,7 @@ import Resume from './components/Resume';
 import Contact from './components/Contact';
 import BitPage from './components/BitPage';
 import BitIterate from './components/BitIterate';
+import IteratePage from './components/IteratePage';
 import Footer from './components/Footer';
 import SEO from './components/SEO';
 import ErrorPage from './components/ErrorPage';
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/bit" element={<BitPage />} />
           <Route path="/bit/iterate" element={<BitIterate />} />
+          <Route path="/iterate" element={<IteratePage />} />
           <Route path="/:slug" element={<PostDetail />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
