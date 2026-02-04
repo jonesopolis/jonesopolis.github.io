@@ -332,6 +332,16 @@ header.header--scrolled {
     text-decoration: none;
 }
 
+/* Standalone Bit without thought bubble (contact page, etc) */
+.hero-bit-solo {
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .hero-decoration:visited,
 .hero-decoration:link,
 .hero-decoration:hover,
@@ -1643,6 +1653,12 @@ footer p {
     }
 
     .hero-decoration {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Standalone Bit centered on mobile */
+    .hero-bit-solo {
         width: 100px;
         height: 100px;
     }

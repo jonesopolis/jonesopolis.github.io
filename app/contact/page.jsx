@@ -25,7 +25,7 @@ export default async function ContactPage() {
             <h1>{contact?.pageTitle}<span className="hero-cursor"></span></h1>
             <p>{contact?.introText}</p>
           </div>
-          <div className="hero-decoration" style={{ opacity: 0.3 }}>
+          <div className="hero-bit-solo" style={{ opacity: 0.3 }}>
             <Robot emotion="thinking" size={140} />
           </div>
         </section>
