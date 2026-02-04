@@ -1,70 +1,82 @@
-<svg viewBox="0 0 1800 450" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1800 250" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
   <!-- Eye - Vision -->
-  <ellipse cx="200" cy="150" rx="80" ry="50" stroke-width="2.5" />
-  <circle cx="200" cy="150" r="30" stroke-width="2" />
-  <circle cx="200" cy="150" r="15" fill="currentColor" />
+  <ellipse cx="150" cy="85" rx="55" ry="35" stroke-width="2" />
+  <circle cx="150" cy="85" r="20" stroke-width="2" />
+  <circle cx="150" cy="85" r="10" fill="currentColor" />
 
   <!-- Image frame below eye -->
-  <rect x="120" y="220" width="160" height="120" rx="5" />
-  <rect x="140" y="240" width="50" height="40" fill="currentColor" opacity="0.2" />
-  <circle cx="230" cy="260" r="20" fill="currentColor" opacity="0.2" />
-  <path d="M140 320 L170 290 L200 310 L240 270 L260 320" opacity="0.4" />
+  <rect x="90" y="130" width="120" height="90" rx="4" />
+  <rect x="105" y="145" width="35" height="30" fill="currentColor" opacity="0.2" />
+  <circle cx="170" cy="160" r="15" fill="currentColor" opacity="0.2" />
+  <path d="M105 205 L130 180 L155 195 L185 165 L200 205" opacity="0.4" />
 
   <!-- Audio - Sound waves -->
-  <rect x="450" y="130" width="20" height="80" rx="10" />
-  <path d="M490 130 Q520 100 520 170 Q520 240 490 210" stroke-width="2" />
-  <path d="M530 110 Q580 60 580 170 Q580 280 530 230" stroke-width="2" opacity="0.7" />
-  <path d="M570 90 Q640 20 640 170 Q640 320 570 250" stroke-width="2" opacity="0.4" />
+  <rect x="350" y="75" width="15" height="55" rx="7" />
+  <path d="M380 75 Q405 50 405 100 Q405 150 380 125" stroke-width="2" />
+  <path d="M415 60 Q455 20 455 100 Q455 180 415 140" stroke-width="2" opacity="0.7" />
+  <path d="M450 45 Q505 0 505 100 Q505 200 450 155" stroke-width="2" opacity="0.4" />
 
   <!-- Waveform below audio -->
-  <rect x="420" y="280" width="250" height="80" rx="5" opacity="0.5" />
-  <path d="M440 320 L460 300 L480 340 L500 290 L520 350 L540 310 L560 330 L580 295 L600 340 L620 305 L640 320" stroke-width="1.5" />
+  <rect x="330" y="165" width="190" height="55" rx="4" opacity="0.5" />
+  <path d="M345 192 L360 175 L375 210 L390 165 L405 215 L420 185 L435 200 L450 170 L465 210 L480 180 L495 192" stroke-width="1.5" />
 
   <!-- Text/Document -->
-  <rect x="780" y="100" width="200" height="160" rx="8" />
-  <line x1="810" y1="140" x2="950" y2="140" opacity="0.5" />
-  <line x1="810" y1="165" x2="940" y2="165" opacity="0.5" />
-  <line x1="810" y1="190" x2="920" y2="190" opacity="0.5" />
-  <line x1="810" y1="215" x2="950" y2="215" opacity="0.5" />
+  <rect x="600" y="55" width="150" height="110" rx="6" />
+  <line x1="620" y1="85" x2="730" y2="85" opacity="0.5" />
+  <line x1="620" y1="105" x2="720" y2="105" opacity="0.5" />
+  <line x1="620" y1="125" x2="705" y2="125" opacity="0.5" />
+  <line x1="620" y1="145" x2="730" y2="145" opacity="0.5" />
 
   <!-- Code block below text -->
-  <rect x="780" y="280" width="200" height="100" rx="8" />
-  <text x="800" y="315" font-family="monospace" font-size="14" fill="currentColor" opacity="0.4">&lt;/&gt;</text>
-  <line x1="840" y1="310" x2="950" y2="310" opacity="0.4" />
-  <line x1="810" y1="335" x2="900" y2="335" opacity="0.4" />
-  <line x1="810" y1="360" x2="880" y2="360" opacity="0.4" />
+  <rect x="600" y="175" width="150" height="65" rx="6" />
+  <text x="615" y="200" font-family="monospace" font-size="11" fill="currentColor" opacity="0.4">&lt;/&gt;</text>
+  <line x1="650" y1="197" x2="730" y2="197" opacity="0.4" />
+  <line x1="620" y1="217" x2="700" y2="217" opacity="0.4" />
 
   <!-- Central AI brain - convergence point -->
-  <circle cx="1200" cy="225" r="100" stroke-width="3" />
-  <path d="M1130 190 Q1200 150 1270 190" opacity="0.5" />
-  <path d="M1140 225 Q1200 200 1260 225" opacity="0.5" />
-  <path d="M1130 260 Q1200 300 1270 260" opacity="0.5" />
+  <circle cx="950" cy="125" r="70" stroke-width="2.5" />
+  <path d="M900 100 Q950 75 1000 100" opacity="0.5" />
+  <path d="M910 125 Q950 108 990 125" opacity="0.5" />
+  <path d="M900 150 Q950 175 1000 150" opacity="0.5" />
 
   <!-- Arrows converging to brain -->
-  <path d="M300 200 Q500 200 600 200 Q800 200 900 200 Q1000 200 1080 215" stroke-width="2" />
-  <polygon points="1080,215 1060,205 1065,220" fill="currentColor" />
+  <path d="M220 130 Q400 130 500 130 Q700 130 870 120" stroke-width="2" />
+  <polygon points="870,120 855,112 855,128" fill="currentColor" />
 
-  <path d="M670 225 Q850 225 1080 225" stroke-width="2" />
-  <polygon points="1080,225 1060,215 1060,235" fill="currentColor" />
+  <path d="M520 110 Q700 115 870 125" stroke-width="2" />
+  <polygon points="870,125 855,117 855,133" fill="currentColor" />
 
-  <path d="M980 300 Q1050 280 1090 250" stroke-width="2" />
-  <polygon points="1090,250 1070,248 1078,263" fill="currentColor" />
+  <path d="M750 180 Q830 160 875 140" stroke-width="2" />
+  <polygon points="875,140 858,140 865,153" fill="currentColor" />
 
   <!-- Output - unified understanding -->
-  <rect x="1450" y="150" width="250" height="150" rx="12" stroke-width="2.5" />
+  <rect x="1120" y="80" width="190" height="100" rx="10" stroke-width="2" />
 
   <!-- Mixed output indicators -->
-  <circle cx="1490" cy="190" r="15" fill="currentColor" opacity="0.3" />
-  <line x1="1520" y1="185" x2="1670" y2="185" opacity="0.5" />
-  <line x1="1520" y1="205" x2="1650" y2="205" opacity="0.5" />
+  <circle cx="1155" cy="115" r="12" fill="currentColor" opacity="0.3" />
+  <line x1="1180" y1="110" x2="1290" y2="110" opacity="0.5" />
+  <line x1="1180" y1="128" x2="1275" y2="128" opacity="0.5" />
 
-  <path d="M1480 235 L1490 250 L1510 230" opacity="0.4" />
-  <line x1="1530" y1="240" x2="1680" y2="240" opacity="0.5" />
-
-  <rect x="1480" y="260" width="40" height="25" rx="3" fill="currentColor" opacity="0.2" />
-  <line x1="1535" y1="270" x2="1680" y2="270" opacity="0.5" />
+  <path d="M1145 150 L1155 163 L1172 145" opacity="0.4" />
+  <line x1="1188" y1="155" x2="1295" y2="155" opacity="0.5" />
 
   <!-- Arrow from brain to output -->
-  <path d="M1300 225 L1430 225" stroke-width="2" />
-  <polygon points="1430,225 1415,215 1415,235" fill="currentColor" />
+  <path d="M1020 125 L1105 125" stroke-width="2" />
+  <polygon points="1105,125 1092,117 1092,133" fill="currentColor" />
+
+  <!-- More elements on right -->
+  <rect x="1380" y="60" width="140" height="70" rx="6" opacity="0.3" />
+  <line x1="1400" y1="85" x2="1500" y2="85" opacity="0.3" />
+  <line x1="1400" y1="105" x2="1480" y2="105" opacity="0.3" />
+
+  <rect x="1420" y="150" width="120" height="55" rx="6" opacity="0.2" />
+  <line x1="1440" y1="172" x2="1520" y2="172" opacity="0.2" />
+  <line x1="1440" y1="192" x2="1500" y2="192" opacity="0.2" />
+
+  <!-- Decorative dots -->
+  <circle cx="1600" cy="80" r="4" fill="currentColor" opacity="0.3" />
+  <circle cx="1640" cy="100" r="4" fill="currentColor" opacity="0.3" />
+  <circle cx="1680" cy="120" r="4" fill="currentColor" opacity="0.3" />
+  <circle cx="1720" cy="140" r="4" fill="currentColor" opacity="0.3" />
+  <circle cx="1760" cy="160" r="4" fill="currentColor" opacity="0.3" />
 </svg>
