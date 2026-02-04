@@ -157,11 +157,13 @@ export default function PostDetail() {
 
           <header className="post-detail-header">
             <h1 ref={titleRef}>{post.title}</h1>
-            <span className="post-date">{formatDate(post.publishDate)}</span>
-            <div className="post-tags">
-              {post.tags.map((tag) => (
-                <span key={tag.slug} className="tag">{tag.name}</span>
-              ))}
+            <div className="post-meta-row">
+              <span className="post-date">{formatDate(post.publishDate)}</span>
+              <div className="post-tags">
+                {post.tags.map((tag) => (
+                  <span key={tag.slug} className="tag">{tag.name}</span>
+                ))}
+              </div>
             </div>
           </header>
 
