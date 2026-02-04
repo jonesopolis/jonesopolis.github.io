@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getPosts, getSiteSettings } from '../contentful';
+import Link from 'next/link';
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -12,28 +10,7 @@ function getMonthYear(dateString) {
   return `${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`.toLowerCase();
 }
 
-export default function PostList() {
-  const [posts, setPosts] = useState([]);
-  const [settings, setSettings] = useState({ loadingText: 'Loading posts...' });
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    Promise.all([getPosts(), getSiteSettings()])
-      .then(([postsData, settingsData]) => {
-        setPosts(postsData);
-        setSettings(settingsData);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="posts">
-        <p>{settings.loadingText}</p>
-      </section>
-    );
-  }
-
+export default function PostList({ posts, settings }) {
   let lastMonth = null;
 
   return (
@@ -51,7 +28,7 @@ export default function PostList() {
                 <span className="month-label">{monthYear}</span>
               </div>
             )}
-            <Link to={`/${post.slug}`} className={`timeline-post-3${isLast ? ' last' : ''}`}>
+            <Link href={`/${post.slug}`} className={`timeline-post-3${isLast ? ' last' : ''}`}>
               <span className="date">{formatDate(post.publishDate)}</span>
               <span className="line"></span>
               <span className="content">

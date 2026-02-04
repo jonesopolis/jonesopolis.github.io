@@ -1,37 +1,54 @@
-# Learning AI Blog
+# please-recompile
 
-A React SPA blog about learning AI, powered by Contentful CMS.
+A blog about learning AI, built with Next.js and powered by Contentful CMS. Deployed on Vercel.
 
 ## Project Structure
 
 ```
-blog/
-├── index.html              # React mount point with SEO meta tags
+please-recompile/
 ├── package.json            # Dependencies
-├── vite.config.js          # Vite bundler config (includes HTTPS + allowed hosts)
-├── Dockerfile              # Docker image for dev server
-├── docker-compose.yml      # Docker compose config with volume mounting
-├── certs/                  # SSL certificates (gitignored)
-│   ├── key.pem
-│   └── cert.pem
+├── next.config.js          # Next.js configuration
+├── app/
+│   ├── layout.jsx          # Root layout (Header, theme, fonts)
+│   ├── page.jsx            # Home (Hero + PostList)
+│   ├── [slug]/
+│   │   └── page.jsx        # Blog post detail
+│   ├── resume/
+│   │   └── page.jsx        # Resume page
+│   ├── contact/
+│   │   └── page.jsx        # Contact page
+│   ├── bit/
+│   │   ├── page.jsx        # Bit mascot showcase
+│   │   └── iterate/
+│   │       └── page.jsx    # Bit iterate page
+│   ├── iterate/
+│   │   └── page.jsx        # Iterate page
+│   ├── drafts/
+│   │   ├── page.jsx        # Draft list
+│   │   └── [slug]/
+│   │       └── page.jsx    # Draft detail
+│   └── not-found.jsx       # 404 page
+├── lib/
+│   └── contentful.js       # Contentful client & helpers (server-side)
 ├── src/
-│   ├── index.jsx           # React entry point
-│   ├── App.jsx             # Main app with routing
-│   ├── contentful.js       # Contentful client & helpers
 │   ├── components/
-│   │   ├── Header.jsx      # Navigation + theme toggle (icon)
-│   │   ├── Hero.jsx        # Hero section (from CMS)
+│   │   ├── Header.jsx      # Navigation + theme toggle (client component)
+│   │   ├── Hero.jsx        # Hero section
 │   │   ├── PostCard.jsx    # Blog post card with image
-│   │   ├── PostList.jsx    # List of posts (from CMS)
-│   │   ├── PostDetail.jsx  # Full post view (from CMS)
-│   │   ├── Footer.jsx      # Footer (from CMS)
-│   │   ├── Resume.jsx      # Resume page
+│   │   ├── PostList.jsx    # List of posts
+│   │   ├── PostDetailClient.jsx  # Post detail (client component)
+│   │   ├── Footer.jsx      # Footer
+│   │   ├── RelatedPosts.jsx # Related posts section
+│   │   ├── ResumeClient.jsx # Resume (client component)
 │   │   ├── Contact.jsx     # Contact page
 │   │   ├── BitPage.jsx     # Bit mascot showcase page
 │   │   ├── Robot.jsx       # Bit robot component (inline SVG)
-│   │   └── SEO.jsx         # Dynamic meta tags
+│   │   └── PostIcons.jsx   # Post icon components
 │   └── styles/
 │       └── main.css        # All styling (responsive)
+├── public/
+│   ├── logos/              # Logo assets
+│   └── og-image.png        # Default OG image
 └── CLAUDE.md
 ```
 
@@ -43,90 +60,95 @@ blog/
 
 ## Tech Stack
 
-- React 18 + React Router
-- Vite (build tool)
+- Next.js 16 (App Router)
+- React 18
 - Contentful CMS (headless)
-- Docker (development environment)
+- Vercel (deployment)
 - Fira Code font
 
-## Development Environment (IMPORTANT)
-
-**All development and testing MUST use Docker. Do not run `npm run dev` locally.**
-
-### Docker Dev Server
-
-The project runs in a Docker container with hot reload. Local file changes sync automatically.
-
-**URL:** `https://code.blog-ai.local:5173`
-
-**Start the dev server:**
-```bash
-docker compose up -d --build
-```
-
-**Check logs:**
-```bash
-docker compose logs -f
-```
-
-**Restart after config changes:**
-```bash
-docker compose restart
-```
-
-**Stop:**
-```bash
-docker compose down
-```
-
-### Prerequisites
-
-1. Docker must be installed and running
-2. Add to `/etc/hosts` (one-time setup):
-   ```
-   127.0.0.1 code.blog-ai.local
-   ```
-3. Generate SSL certificates (one-time setup):
-   ```bash
-   mkdir -p certs
-   openssl req -x509 -newkey rsa:2048 -keyout certs/key.pem -out certs/cert.pem -days 365 -nodes -subj "/CN=code.blog-ai.local"
-   ```
-
-### AI Agent Instructions
-
-**CRITICAL:** When making changes to this project:
-1. **ALWAYS** verify Docker is running before testing changes
-2. **NEVER** run `npm run dev` locally - use the Docker container
-3. If Docker is not running, start it with `docker compose up -d --build` before proceeding
-4. Test all changes at `https://code.blog-ai.local:5173`
-5. If the Docker container is down and cannot be started, STOP and do not continue work
-
-**Check if Docker is running:**
-```bash
-docker compose ps
-```
-
-**If container is not running, start it:**
-```bash
-docker compose up -d --build
-```
-
-## Local Setup (NOT for development - reference only)
+## Development
 
 ```bash
 npm install
 npm run dev
 ```
 
+Dev server runs at `http://localhost:3000`
+
 ## Environment Variables
 
 Create `.env` file:
 ```
-VITE_CONTENTFUL_SPACE_ID=your_space_id
-VITE_CONTENTFUL_ACCESS_TOKEN=your_delivery_api_token
+NEXT_PUBLIC_CONTENTFUL_SPACE_ID=your_space_id
+NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=your_delivery_api_token
+
+# For MCP server (Content Management API)
+CONTENTFUL_MANAGEMENT_ACCESS_TOKEN=your_management_token
+CONTENTFUL_SPACE_ID=your_space_id
 ```
 
-Without credentials, the app uses mock data for development.
+## Deployment
+
+Deployed on Vercel at `please-recompile.vercel.app`. Push to master triggers automatic deployment.
+
+## Next.js Architecture
+
+### Server vs Client Components
+
+**Server Components (default):**
+- All page.jsx files in app/
+- Data fetching happens on the server
+- No 'use client' directive needed
+
+**Client Components (interactive):**
+- `Header.jsx` - Theme toggle, scroll listener, localStorage
+- `PostDetailClient.jsx` - Scroll-based sticky title
+- `ResumeClient.jsx` - Scroll listener
+- Components with 'use client' directive at top
+
+### Data Fetching
+
+Server components fetch data directly:
+```jsx
+// app/[slug]/page.jsx
+export default async function PostPage({ params }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  return <PostDetailClient post={post} />;
+}
+```
+
+### Metadata & SEO
+
+Dynamic metadata via generateMetadata():
+```jsx
+export async function generateMetadata({ params }) {
+  const post = await getPostBySlug(params.slug);
+  return {
+    title: post.title,
+    description: post.hook,
+    openGraph: { images: [post.image] }
+  };
+}
+```
+
+### Static Generation
+
+Pre-render dynamic routes with generateStaticParams():
+```jsx
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
+```
+
+### ISR (Incremental Static Regeneration)
+
+Pages revalidate every 60 seconds:
+```javascript
+// lib/contentful.js
+const res = await fetch(url, { next: { revalidate: 60 } });
+```
 
 ## Contentful Content Model
 
@@ -205,21 +227,25 @@ Global settings including hero, contact page, footer, navigation, and Bit page c
 ## Routes
 
 - `/` - Home (hero + post list)
-- `/post/:slug` - Individual post
+- `/:slug` - Individual post (dynamic route)
 - `/resume` - Resume page
 - `/contact` - Contact page
 - `/bit` - Bit mascot showcase page
+- `/bit/iterate` - Bit iterate page
+- `/drafts` - Draft list
+- `/drafts/:slug` - Draft detail
 
 ## Features
 
+- SSR with proper social sharing (OG tags rendered server-side)
 - SEO optimized (meta tags, OG, Twitter cards)
 - Responsive design (mobile-first)
 - Dark/light mode toggle (icon button)
 - Sticky header with navigation
 - Animated hero section
 - Post cards with featured images
-- Loading skeletons
 - Smooth animations
+- ISR for fast page loads with fresh content
 
 ## Conventions
 
@@ -232,7 +258,7 @@ Global settings including hero, contact page, footer, navigation, and Bit page c
 
 ## Bit - Robot Mascot
 
-Bit is the friendly robot mascot of Learning AI. The Robot component (`src/components/Robot.jsx`) renders Bit as inline SVG with 16 emotions/poses that animate on hover.
+Bit is the friendly robot mascot of please-recompile. The Robot component (`src/components/Robot.jsx`) renders Bit as inline SVG with 16 emotions/poses that animate on hover.
 
 ### Usage
 ```jsx

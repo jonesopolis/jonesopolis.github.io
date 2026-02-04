@@ -1,6 +1,9 @@
+'use client';
+
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { getSiteSettings } from '../contentful';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { getSiteSettings } from '../../lib/contentful';
 
 function SunIcon() {
   return (
@@ -27,13 +30,19 @@ function MoonIcon() {
 }
 
 export default function Header() {
-  const [isDark, setIsDark] = useState(() => {
-    return localStorage.getItem('theme') === 'dark';
-  });
+  const [isDark, setIsDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [settings, setSettings] = useState({ logoText: '// learning.ai' });
-  const location = useLocation();
+  const [settings, setSettings] = useState({ logoText: '// please recompile' });
+  const pathname = usePathname();
+
+  // Initialize theme from localStorage on mount
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      setIsDark(true);
+    }
+  }, []);
 
   useEffect(() => {
     getSiteSettings().then(setSettings);
@@ -74,7 +83,7 @@ export default function Header() {
   // Close menu on route change
   useEffect(() => {
     setMenuOpen(false);
-  }, [location]);
+  }, [pathname]);
 
   // Detect scroll for compact header
   useEffect(() => {
@@ -95,15 +104,15 @@ export default function Header() {
     <header className={scrolled ? 'header--scrolled' : ''}>
       <div className="header-content">
         <div className="logo">
-          <Link to="/">{settings.logoText}</Link>
+          <Link href="/">{settings.logoText}</Link>
         </div>
 
         <nav className={`nav ${menuOpen ? 'nav--open' : ''}`}>
           {navItems.map((item) => (
             <Link
               key={item.path}
-              to={item.path}
-              className={`nav-link ${location.pathname === item.path ? 'nav-link--active' : ''}`}
+              href={item.path}
+              className={`nav-link ${pathname === item.path ? 'nav-link--active' : ''}`}
             >
               {item.label}
             </Link>

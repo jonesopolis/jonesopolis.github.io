@@ -1,16 +1,7 @@
-import { useEffect, useState } from 'react';
-import { getFooter } from '../contentful';
-
-export default function Footer() {
-  const [footer, setFooter] = useState({ copyright: '', tagline: '' });
-
-  useEffect(() => {
-    getFooter().then(setFooter);
-  }, []);
-
+export default function Footer({ footer }) {
   return (
     <footer>
-      <p>{footer.copyright}</p>
+      <p>{footer?.copyright}</p>
     </footer>
   );
 }
