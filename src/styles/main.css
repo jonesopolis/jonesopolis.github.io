@@ -291,6 +291,15 @@ header.header--scrolled {
     width: 160px;
     height: 160px;
     flex-shrink: 0;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.hero-decoration:visited,
+.hero-decoration:link,
+.hero-decoration:hover,
+.hero-decoration:active {
+    color: var(--accent);
 }
 
 .hero-svg {
