@@ -751,14 +751,8 @@ html.theme-transitioning .post-detail-header * {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 20px;
-    border: 1px solid var(--border);
     text-decoration: none;
     transition: all 0.2s ease;
-}
-
-.related-post-card:hover {
-    border-color: var(--accent);
 }
 
 .related-post-card .date {
