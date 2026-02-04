@@ -2475,6 +2475,7 @@ html.dark-mode .error-oops {
     text-align: right;
     padding-right: 16px;
     padding-top: 2px;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .timeline-post-3 .line {
@@ -2521,6 +2522,7 @@ html.dark-mode .error-oops {
     flex-direction: column;
     gap: 2px;
     padding-left: 16px;
+    transition: transform 0.2s ease;
 }
 
 .timeline-post-3 .hook {
@@ -2534,9 +2536,17 @@ html.dark-mode .error-oops {
     font-weight: 500;
 }
 
-.timeline-post-3:hover .hook,
-.timeline-post-3:hover .title,
 .timeline-post-3:hover .date {
+    transform: translateX(-6px);
+    color: var(--accent);
+}
+
+.timeline-post-3:hover .content {
+    transform: translateX(6px);
+}
+
+.timeline-post-3:hover .hook,
+.timeline-post-3:hover .title {
     color: var(--accent);
 }
 
