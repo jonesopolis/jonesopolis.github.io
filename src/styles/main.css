@@ -423,7 +423,7 @@ header.header--scrolled {
 /* Sticky Title Bar */
 .sticky-title-bar {
     position: fixed;
-    top: 71px; /* Below compact header */
+    top: 61px; /* Below compact header */
     left: 0;
     right: 0;
     background-color: var(--bg-primary);
@@ -1431,7 +1431,7 @@ footer p {
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
     .sticky-title-bar {
-        top: 71px; /* Same as desktop */
+        top: 61px; /* Same as desktop */
     }
 
     .sticky-title-content {
