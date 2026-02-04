@@ -147,22 +147,41 @@ function Layout8({ posts }) {
   );
 }
 
-// Layout 9: Timeline with hook
+// Layout 9: Timeline with hook - month breaks, hook above title
 function Layout9({ posts }) {
+  // Group posts by month
+  let lastMonth = null;
+
   return (
     <div className="iterate-layout">
       <h3 className="iterate-layout-title">9. timeline with hook</h3>
       <div className="iterate-posts layout-9">
-        {posts.map((post) => (
-          <Link key={post.slug} to={`/${post.slug}`} className="iterate-post-9">
-            <span className="date">{formatDate(post.publishDate)}</span>
-            <span className="line"></span>
-            <span className="content">
-              <span className="hook">{post.hook || 'what can we learn?'}</span>
-              <span className="title">{post.title}</span>
-            </span>
-          </Link>
-        ))}
+        {posts.map((post, index) => {
+          const date = new Date(post.publishDate);
+          const monthYear = `${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`.toLowerCase();
+          const showMonthBreak = monthYear !== lastMonth;
+          lastMonth = monthYear;
+
+          return (
+            <div key={post.slug} className="timeline-item">
+              {showMonthBreak && (
+                <div className="month-break">
+                  <span className="month-label">{monthYear}</span>
+                </div>
+              )}
+              <Link to={`/${post.slug}`} className="iterate-post-9">
+                <span className="content">
+                  <span className="hook">{post.hook || 'what can we learn?'}</span>
+                  <span className="title">{post.title}</span>
+                </span>
+                <span className="timeline-row">
+                  <span className="line"></span>
+                  <span className="date">{formatDate(post.publishDate)}</span>
+                </span>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

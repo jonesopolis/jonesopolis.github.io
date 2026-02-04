@@ -2543,87 +2543,96 @@ html.dark-mode .error-oops {
     color: var(--accent);
 }
 
-/* Layout 9: Timeline */
+/* Layout 9: Timeline with month breaks */
 .layout-9 {
     gap: 0;
-    padding-left: 20px;
+}
+
+.layout-9 .timeline-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-9 .month-break {
+    padding: 24px 0 12px;
+    margin-bottom: 8px;
+}
+
+.layout-9 .timeline-item:first-child .month-break {
+    padding-top: 0;
+}
+
+.layout-9 .month-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    display: block;
 }
 
 .iterate-post-9 {
-    display: grid;
-    grid-template-columns: 80px 20px 1fr;
-    gap: 0;
-    align-items: start;
-    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    margin: 0 -16px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
 }
 
-.iterate-post-9 .date {
-    color: var(--text-secondary);
-    font-size: 11px;
-    text-align: right;
-    padding-right: 16px;
-}
-
-.iterate-post-9 .line {
-    position: relative;
-    height: 100%;
-}
-
-.iterate-post-9 .line::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: -32px;
-    width: 1px;
-    background: var(--border);
-    transform: translateX(-50%);
-}
-
-.iterate-post-9 .line::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 6px;
-    width: 8px;
-    height: 8px;
-    border: 2px solid var(--border);
-    background: var(--bg-primary);
-    border-radius: 50%;
-    transform: translateX(-50%);
-    transition: all 0.2s ease;
-}
-
-.iterate-post-9:hover .line::after {
-    border-color: var(--accent);
-    background: var(--accent);
-}
-
-.iterate-post-9:last-child .line::before {
-    display: none;
+.iterate-post-9:hover {
+    background: var(--bg-secondary);
 }
 
 .iterate-post-9 .content {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding-left: 16px;
+    gap: 2px;
 }
 
 .iterate-post-9 .hook {
     color: var(--text-secondary);
     font-size: 12px;
-    font-style: italic;
 }
 
 .iterate-post-9 .title {
     color: var(--text-primary);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
+}
+
+.iterate-post-9 .timeline-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.iterate-post-9 .line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    transition: background 0.2s ease;
+}
+
+.iterate-post-9:hover .line {
+    background: var(--accent);
+}
+
+.iterate-post-9 .date {
+    color: var(--text-secondary);
+    font-size: 11px;
+    flex-shrink: 0;
 }
 
 .iterate-post-9:hover .hook,
 .iterate-post-9:hover .title {
+    color: var(--accent);
+}
+
+.iterate-post-9:hover .date {
     color: var(--accent);
 }
 
@@ -2640,14 +2649,6 @@ html.dark-mode .error-oops {
 
     .layout-8 {
         grid-template-columns: 1fr;
-    }
-
-    .iterate-post-9 {
-        grid-template-columns: 60px 16px 1fr;
-    }
-
-    .iterate-post-9 .date {
-        font-size: 10px;
     }
 }
 
