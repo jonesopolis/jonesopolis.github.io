@@ -228,10 +228,11 @@ header.header--scrolled {
     flex: 1;
 }
 
-/* Container for Bit + thought bubble on desktop - hidden, badge stays in content */
+/* Container for Bit + thought bubble */
 .hero-bit-container {
     position: relative;
     flex-shrink: 0;
+    display: inline-block;
 }
 
 .hero-badge {
@@ -245,16 +246,17 @@ header.header--scrolled {
     padding: 6px 12px;
     background-color: var(--accent-subtle);
     border-radius: 20px;
+    white-space: nowrap;
 }
 
-/* Desktop: badge above Bit */
+/* Desktop: badge upper-right of Bit */
 .hero-bit-container .hero-badge {
     position: absolute;
-    top: -20px;
-    right: -40px;
+    top: -15px;
+    left: calc(100% - 30px);
 }
 
-/* Thought bubble dots - desktop */
+/* Thought bubble dots */
 .hero-bit-container .hero-badge::before,
 .hero-bit-container .hero-badge::after {
     content: '';
@@ -1610,39 +1612,39 @@ footer p {
         max-width: 100%;
     }
 
-    /* Bit + badge container centered as one unit */
+    /* Bit + badge container - shift left to keep bubble on screen */
     .hero-bit-container {
         position: relative;
         display: inline-block;
+        margin-left: -50px;
     }
 
     .hero-bit-container .hero-badge {
         position: absolute;
         top: -15px;
-        left: calc(100% - 20px);
-        font-size: 10px;
-        padding: 5px 10px;
-        white-space: nowrap;
+        left: calc(100% - 15px);
+        font-size: 9px;
+        padding: 4px 8px;
     }
 
     /* Thought bubble dots point toward Bit */
     .hero-bit-container .hero-badge::before {
-        bottom: -10px;
-        left: 8px;
-        width: 8px;
-        height: 8px;
+        bottom: -8px;
+        left: 6px;
+        width: 6px;
+        height: 6px;
     }
 
     .hero-bit-container .hero-badge::after {
-        bottom: -16px;
+        bottom: -14px;
         left: 2px;
-        width: 5px;
-        height: 5px;
+        width: 4px;
+        height: 4px;
     }
 
     .hero-decoration {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
     }
 
     .hero h1 {
@@ -1713,9 +1715,20 @@ footer p {
         font-size: 15px;
     }
 
+    /* Smaller Bit on very small screens */
+    .hero-bit-container {
+        margin-left: -40px;
+    }
+
     .hero-decoration {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .hero-bit-container .hero-badge {
+        font-size: 8px;
+        padding: 3px 6px;
+        left: calc(100% - 10px);
     }
 }
 
