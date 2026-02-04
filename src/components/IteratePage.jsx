@@ -147,9 +147,8 @@ function Layout8({ posts }) {
   );
 }
 
-// Layout 9: Timeline with hook - month breaks, hook above title
+// Layout 9: Timeline with hook - vertical timeline with month breaks
 function Layout9({ posts }) {
-  // Group posts by month
   let lastMonth = null;
 
   return (
@@ -161,6 +160,7 @@ function Layout9({ posts }) {
           const monthYear = `${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`.toLowerCase();
           const showMonthBreak = monthYear !== lastMonth;
           lastMonth = monthYear;
+          const isLast = index === posts.length - 1;
 
           return (
             <div key={post.slug} className="timeline-item">
@@ -169,14 +169,12 @@ function Layout9({ posts }) {
                   <span className="month-label">{monthYear}</span>
                 </div>
               )}
-              <Link to={`/${post.slug}`} className="iterate-post-9">
+              <Link to={`/${post.slug}`} className={`iterate-post-9${isLast ? ' last' : ''}`}>
+                <span className="date">{formatDate(post.publishDate)}</span>
+                <span className="line"></span>
                 <span className="content">
                   <span className="hook">{post.hook || 'what can we learn?'}</span>
                   <span className="title">{post.title}</span>
-                </span>
-                <span className="timeline-row">
-                  <span className="line"></span>
-                  <span className="date">{formatDate(post.publishDate)}</span>
                 </span>
               </Link>
             </div>
